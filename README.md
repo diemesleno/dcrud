@@ -37,9 +37,9 @@ docker-compose up
 
 access http://127.0.0.1:8000
 
-Authentication with Google Account will create a user with superuser power (administrator). With this power you
-can create new users without giving them admin permissions. You can see all users (non admin), but you can manage
-only your own ones.
+Authentication with Google Account will create a user with superuser power (administrator). 
+With this power you can create new users without giving them admin permissions. 
+ou can see all users (non admin), but you can manage only your own ones.
 ```
 
 ## Release History
