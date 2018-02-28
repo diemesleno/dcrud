@@ -1,0 +1,20 @@
+version: '3.2'
+
+services:
+  db:
+    image: postgres
+    ports: 
+      - "5432"
+  web:
+    build:
+      dockerfile: ./docker/python.dockerfile
+      context: .
+    image: diemesleno/python
+    container_name: python
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
