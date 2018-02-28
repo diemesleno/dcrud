@@ -3,10 +3,11 @@ from django.contrib.auth.models import AbstractUser
 from localflavor.generic.models import IBANField
 from django.conf import settings
 
-'''
-The user extend AbstractUser and I added 2 new fields
-'''
+
 class User(AbstractUser):
+    '''
+    The user extend AbstractUser and I added 2 new fields
+    '''
     iban = IBANField()
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
     
