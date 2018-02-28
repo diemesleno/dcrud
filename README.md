@@ -50,7 +50,7 @@ ou can see all users (non admin), but you can manage only your own ones.
 ## Login Page
 ![](login.png)
 
-## User Logged with no userd created
+## User Logged with no users created
 ![](logged.png)
 
 ## User logged with user created
