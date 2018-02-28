@@ -18,6 +18,8 @@ from django.urls import include
 
 from django.contrib.auth import views as auth_views
 
+from user import urls as user_urls
+
 urlpatterns = [
     path('login/', auth_views.login, name='login'),
     path('logout/', auth_views.logout, name='logout'),
