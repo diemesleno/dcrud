@@ -6,8 +6,8 @@
 ![Dockbit][deploy-image]
 ![Wercker][build-image]
 
-Possible to create a account using Google Authentication and after that
-create and manager users.
+It is possible to create an account using Google Authentication and after that
+create and manage users.
 
 ## Technologies utilized
 * Python 3.6.4
@@ -16,12 +16,12 @@ create and manager users.
 
 ### TODO
 
-- [ ] Administrators of the app should authenticate using a Google account
-- [ ] Administrators should be able to create, read, update and delete users
-- [ ] Restrict manipulation operations on a user to the administrator who created them 
+- [x] Administrators of the app should authenticate using a Google account
+- [x] Administrators should be able to create, read, update and delete users
+- [x] Restrict manipulation operations on a user to the administrator who created them 
 - [x] Use PostgreSQL as the database backend
 - [x] Use Python 3.x
-- [ ] Write documentation on how to setup, run and use your implementation
+- [x] Write documentation on how to setup, run and use your implementation
 
 
 ## Installation
@@ -36,10 +36,31 @@ docker-compose run web python manage.py migrate
 docker-compose up
 
 access http://127.0.0.1:8000
+
+Authentication with Google Account will create a user with superuser power (administrator). With this power you
+can create new users without giving them admin permissions. You can see all users (non admin), but you can manage
+only your own ones.
 ```
 
 ## Release History
-
+* 0.1.0
+    * Dockerfile e Docker-Compose
+* 0.0.9
+    * Templates
+* 0.0.8
+    * User Views
+* 0.0.7
+    * User Urls
+* 0.0.6
+    * User Form
+* 0.0.5
+    * User Model
+* 0.0.4
+    * Application user
+* 0.0.3
+    * Project creation
+* 0.0.2
+    * Application user
 * 0.0.1
     * Project creation
 
