@@ -5,9 +5,9 @@ from .models import User
 
 
 class UserAdminCreationForm(UserCreationForm):
-	'''
+    '''
     Creating the form to create users. Here we need only 4 fields
-	'''
+    '''
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'iban']
@@ -27,11 +27,11 @@ class UserAdminCreationForm(UserCreationForm):
 
 
 class UserAdminForm(forms.ModelForm):
-	'''
+    '''
     The admin form will follow the same rule, plus the 2 fields that allow
     enter in the admin area. Not necessary because I remove the option to access
-     the admin area.
-	'''
+    the admin area.
+    '''
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'iban', 'is_active', 'is_staff']
