@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,11 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # apps
+    'user',
 
     # Third party
     'localflavor',
     'social_django',
     'widget_tweaks',
+    'raven.contrib.django.raven_compat',
 
 ]
 
@@ -136,3 +139,11 @@ LOGOUT_REDIRECT_URL = 'login'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '707500519844-oqu428ltfchk5jjv6c0epi4r1ok9vc2l.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '20sAh5YZhf7lIbWNAa1Wvdjd'
+
+# Sentry configuration
+RAVEN_CONFIG = {
+    'dsn': 'https://97a76f57afd440dcaea4cf2fc9edf732:be6527ab747e4df6ac5efee17930fe58@sentry.io/293899',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+}
