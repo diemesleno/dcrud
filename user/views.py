@@ -9,6 +9,7 @@ from django.views.generic import UpdateView
 from django.views.generic import FormView
 from django.views.generic import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.template import loader
 
 from user.models import User
 from user.forms import UserAdminCreationForm
@@ -28,9 +29,9 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
 
 class CreateUserView(LoginRequiredMixin, CreateView):
-	'''
+    '''
     Used to create the users using the custom model created
-	'''
+    '''
     model = User
     template_name = 'user/create.html'
     fields = ['first_name', 'last_name', 'email', 'iban']
@@ -44,9 +45,9 @@ class CreateUserView(LoginRequiredMixin, CreateView):
 
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
-	'''
+    '''
     Used to update one user. I check if the user is creation from the logged user.
-	'''
+    '''
     model = User
     template_name = 'user/update.html'
     fields = ['first_name', 'last_name', 'email', 'iban']
@@ -59,10 +60,10 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
 
 
 class DeleteUserView(LoginRequiredMixin, DeleteView):
-	'''
+    '''
     Used to delete a user. I check if the logged user is the creator
     of the user in danger.
-	'''
+    '''
     model = User
     template_name = 'user/delete.html'
     success_url = reverse_lazy('index')
@@ -71,3 +72,20 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
         context = super(DeleteView, self).get_context_data(**kwargs)
         context['owner'] = User.objects.filter(pk=self.kwargs['pk'], creator=self.request.user)
         return context
+
+
+
+def error404(request):
+    '''
+    404 handler
+    '''
+    template = loader.get_template('404.html')
+    return HttpResponse(content=template.render(), content_type='text/html; charset=utf8', status=404)
+
+
+def error500(request):
+    '''
+    500 handler
+    '''
+    template = loader.get_template('500.html')
+    return HttpResponse(content=template.render(), content_type='text/html; charset=utf8', status=500)
