@@ -16,7 +16,8 @@ from user.forms import UserAdminCreationForm
 
 class IndexView(LoginRequiredMixin, TemplateView):
     '''
-    
+    Selecting all users that are not superuser to
+    show on index page.
     '''
     template_name = 'user/index.html'
 
@@ -28,7 +29,7 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
 class CreateUserView(LoginRequiredMixin, CreateView):
 	'''
-
+    Used to create the users using the custom model created
 	'''
     model = User
     template_name = 'user/create.html'
@@ -44,7 +45,7 @@ class CreateUserView(LoginRequiredMixin, CreateView):
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
 	'''
-
+    Used to update one user. I check if the user is creation from the logged user.
 	'''
     model = User
     template_name = 'user/update.html'
@@ -59,7 +60,8 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
 
 class DeleteUserView(LoginRequiredMixin, DeleteView):
 	'''
-
+    Used to delete a user. I check if the logged user is the creator
+    of the user in danger.
 	'''
     model = User
     template_name = 'user/delete.html'
