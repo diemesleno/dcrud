@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+            {% if users %}
+            <div class="container">
+                    <h3>Users Management List</h3>
+                    <p>Dear {{ user.first_name }}, you can update and delete only the users that you created</p>            
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Firstname</th>
+                          <th>Lastname</th>
+                          <th>IBAN</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for u in users %}
+                        <tr>
+                          <td>{{ u.first_name }}</td>
+                          <td>{{ u.last_name }}</td>
+                          <td>{{ u.iban }}</td>
+                          {% if u.creator == user %}
+                          <td>
+                            <a href="{% url 'user_update' u.id %}"><button type="button" class="btn btn-primary">Update</button></a>
+                            <a href="{% url 'user_delete' u.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                          </td>
+                          {% else %}
+                            <td>
+                                <a href="#" title="You have no permission to update this user"><button type="button" class="btn btn-primary disabled">Update</button></a>
+                                <a href="#" title="You have no permission to delete this user"><button type="button" class="btn btn-danger disabled">Delete</button></a>
+                            </td>
+                          {% endif %}
+                        </tr>
+                       {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+            {% else %}
+              <div class="container">
+                  <h3>I'm sorry {{ user.first_name }}, there's no users to list here. :(</h3>
+                  <h5>But you still can create a new one! :)</h5>
+              </div>
+            {% endif %}
+  {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% load widget_tweaks %}
+{% block content %}
+    <div class="container">
+            <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="page-header">
+                            <h1>Users Creation Form</h1>
+                        </div>
+            {% if error_message %}
+               <p>{{ error_message }}</p>
+            {% endif %}
+      <form class="form-signin" method="POST" autocomplete="off">
+            {% csrf_token %}
+        <h4 class="form-signin-heading">{{ user.first_name }}, to create a new user, please fill the form bellow.</h4>
+        <fieldset>
+                {% for field in form.visible_fields %}
+                {% if field.name != 'password1' and field.name != 'password2' %}
+                <div class="form-group">
+                  <label for="{{ field.auto_id }}" class="col-md-3 control-label">{{ field.label }}</label>
+                  {% render_field field class='form-control' required="required" %}
+                  {% for error in field.errors %}
+                    <span class="help-block">{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              {% endfor %}
+        <button class="btn btn-large btn-primary" type="submit">Save</button>
+        </fieldset>
+      </form>
+    </div>
+    </div>
+    </div>
+ {% endblock %}

@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Access Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Access Page">
+    <meta name="author" content="Diemesleno Souza Carvalho">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <p class="display-4">Hello, {{ user.username }}</p>
+    {% else %}
+    <div class="container">
+        <h2 class="form-signin-heading">Please sign in with Google Account</h2>
+        <a href="{% url 'social:begin' 'google-oauth2' %}"><button class="btn btn-large btn-primary" type="submit">Sign in</button></a>
+    </div>
+    {% endif %}
+  </body>
+</html>
