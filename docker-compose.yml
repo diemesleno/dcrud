@@ -11,10 +11,22 @@ services:
       context: .
     image: diemesleno/python
     container_name: python
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000       
     volumes:
       - .:/var/www
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - "migration"
+  migration:
+    build:
+      dockerfile: ./docker/python.dockerfile
+      context: .
+    image: diemesleno/python
+    command: python manage.py migrate --noinput
+    volumes:
+      - .:/var/www
+    links:
+      - "db"
+    depends_on:
+      - "db"
