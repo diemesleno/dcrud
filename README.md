@@ -36,7 +36,7 @@ Set up a virtual machine environment using vagrant (provisioned by Puppet/Salt/A
 
 ## Installation
 
-Any Operating System:
+Any Operating System with docker/docker-compose installed:
 
 ```sh
 
