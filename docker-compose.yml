@@ -5,6 +5,8 @@ services:
     image: postgres
     ports: 
       - "5432"
+    networks: 
+      - production
 
   web:
     build:
@@ -17,6 +19,8 @@ services:
       - .:/var/www
     ports:
       - "8000:8000"
+    networks: 
+      - production
     depends_on:
       - "migration"
 
@@ -24,9 +28,14 @@ services:
     build:
       dockerfile: ./docker/python.dockerfile
       context: .
-    image: diemesleno/python
+    image: diemesleno/django
+    container_name: django
     command: python manage.py migrate --noinput
-    links:
-      - "db"
+    networks: 
+      - production
     depends_on:
       - "db"
+
+networks:
+   production:
+      driver: bridge
