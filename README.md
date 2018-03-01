@@ -44,8 +44,6 @@ git clone https://github.com/diemeslen0/dcrud
 
 cd dcrud
 
-docker-compose run web python manage.py makemigrations
-
 docker-compose run web python manage.py migrate
 
 docker-compose up
