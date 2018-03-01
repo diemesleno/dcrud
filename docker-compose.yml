@@ -5,6 +5,7 @@ services:
     image: postgres
     ports: 
       - "5432"
+
   web:
     build:
       dockerfile: ./docker/python.dockerfile
@@ -17,15 +18,15 @@ services:
     ports:
       - "8000:8000"
     depends_on:
+      - "db"
       - "migration"
+
   migration:
     build:
       dockerfile: ./docker/python.dockerfile
       context: .
     image: diemesleno/python
     command: python manage.py migrate --noinput
-    volumes:
-      - .:/var/www
     links:
       - "db"
     depends_on:
