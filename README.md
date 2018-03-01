@@ -74,17 +74,17 @@ ou can see all users (non admin), but you can manage only your own ones.
 * 0.0.8
     * User Views
 * 0.0.7
-    * User Urls
-* 0.0.6
     * User Form
-* 0.0.5
+* 0.0.6
     * User Model
+* 0.0.5
+    * User URLS
 * 0.0.4
-    * Application user
+    * Project URLS
 * 0.0.3
-    * Project creation
+    * Application user creation
 * 0.0.2
-    * Application user
+    * Settings configuration
 * 0.0.1
     * Project creation
 
