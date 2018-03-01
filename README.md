@@ -16,6 +16,10 @@ create and manage users.
 
 ### TODO
 
+Please implement a small Django application to manage (CRUD) users and their bank 
+account data (IBAN). Required fields are first name, last name and IBAN. 
+Data should be validated.
+
 - [x] Administrators of the app should authenticate using a Google account
 - [x] Administrators should be able to create, read, update and delete users
 - [x] Restrict manipulation operations on a user to the administrator who created them 
