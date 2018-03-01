@@ -14,11 +14,13 @@ create and manage users.
 * Django 2.0.2
 * PostgreSQL 9.5+
 
-### TODO
+### User Administration
 
 Please implement a small Django application to manage (CRUD) users and their bank 
 account data (IBAN). Required fields are first name, last name and IBAN. 
 Data should be validated.
+
+### TODO
 
 - [x] Administrators of the app should authenticate using a Google account
 - [x] Administrators should be able to create, read, update and delete users
@@ -27,6 +29,10 @@ Data should be validated.
 - [x] Use Python 3.x
 - [x] Write documentation on how to setup, run and use your implementation
 
+
+### Test Environment
+
+Set up a virtual machine environment using vagrant (provisioned by Puppet/Salt/Ansible/Bash - whatever suits you best) or docker-compose to run the test task including some short documentation.
 
 ## Installation
 
