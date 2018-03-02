@@ -46,9 +46,9 @@ cd dcrud
 
 docker-compose build
 
-docker-compose run web python manage.py migrate
+docker-compose up -d
 
-docker-compose up
+docker-compose run web python manage.py migrate
 
 access http://127.0.0.1:8000
 
