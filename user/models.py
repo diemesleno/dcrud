@@ -23,7 +23,7 @@ class User(AbstractUser):
             self.is_superuser = True
         else:
             self.is_superuser = False
-        self.username = hash(self.email)
+        self.username = hash(self.first_name + '' + self.last_name)
         super().save(*args, **kwargs)
 
     def __str__(self):
