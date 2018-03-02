@@ -10,7 +10,7 @@ class UserAdminCreationForm(UserCreationForm):
     '''
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'iban']
+        fields = ['first_name', 'last_name', 'iban']
     
     def __init__(self, *args, **kwargs):
         '''
@@ -34,4 +34,4 @@ class UserAdminForm(forms.ModelForm):
     '''
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'iban', 'is_active', 'is_staff']
+        fields = ['first_name', 'last_name', 'iban', 'is_active', 'is_staff']
