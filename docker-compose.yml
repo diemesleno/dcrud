@@ -1,8 +1,9 @@
-version: '3.2'
+version: '3.3'
 
 services:
   db:
     image: postgres
+    restart: always
     ports: 
       - "5432"
     networks: 
@@ -19,18 +20,6 @@ services:
       - .:/var/www
     ports:
       - "8000:8000"
-    networks: 
-      - production
-    depends_on:
-      - "migration"
-
-  migration:
-    build:
-      dockerfile: ./docker/python.dockerfile
-      context: .
-    image: diemesleno/django
-    container_name: django
-    command: python manage.py migrate --noinput
     networks: 
       - production
     depends_on:
