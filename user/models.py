@@ -30,4 +30,5 @@ class User(AbstractUser):
         '''
         Just to not return a object without information
         '''
-        return self.last_name + ', ' + self.first_name
+        return self.first_name
+
