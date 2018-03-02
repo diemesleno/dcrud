@@ -44,6 +44,10 @@ git clone https://github.com/diemeslen0/dcrud
 
 cd dcrud
 
+docker-compose build
+
+docker-compose run web python manage.py migrate
+
 docker-compose up
 
 access http://127.0.0.1:8000
