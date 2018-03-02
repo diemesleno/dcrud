@@ -29,6 +29,9 @@ Data should be validated.
 - [x] Use Python 3.x
 - [x] Write documentation on how to setup, run and use your implementation
 
+### Extras
+- [x] Error Tracking with Sentry
+
 
 ### Test Environment
 
@@ -67,6 +70,8 @@ ou can see all users (non admin), but you can manage only your own ones.
 ![](cad.png)
 
 ## Release History
+* 0.1.1
+    * Adding Sentry (Error Tracking)
 * 0.1.0
     * Dockerfile e Docker-Compose
 * 0.0.9
