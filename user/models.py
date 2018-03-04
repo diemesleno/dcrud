@@ -32,6 +32,7 @@ class User(AbstractUser):
             self.is_superuser = True
             self.is_staff = True
             self.username = self.email
+            self.iban = str(uuid.uuid4())
         else:
             self.is_superuser = False
             self.username = str(uuid.uuid4())
