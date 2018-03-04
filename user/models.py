@@ -1,21 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.base_user import BaseUserManager
 from localflavor.generic.models import IBANField
 from django.conf import settings
 
 import uuid
 
-
 class User(AbstractUser):
     '''
     The user extend AbstractUser and I added 2 new fields
     '''
-    iban = IBANField()
+    iban = IBANField(unique=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
     email = models.EmailField('E-mail', unique=True)
+    username = models.CharField(max_length=50, unique=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
+
     
     def save(self, *args, **kwargs):
         '''
