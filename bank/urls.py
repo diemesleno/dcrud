@@ -19,6 +19,8 @@ from django.urls import include
 from django.contrib.auth import views as auth_views
 
 from user import urls as user_urls
+from user.views import Template404View
+from user.views import Template500View
 
 urlpatterns = [
     path('login/', auth_views.login, name='login'),
@@ -26,3 +28,7 @@ urlpatterns = [
     path('auth/', include('social_django.urls', namespace='social_django')),
     path('', include(user_urls)),
 ]
+
+
+handler404 = Template404View.as_view()
+handler500 = Template500View.as_view()
