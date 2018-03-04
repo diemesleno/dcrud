@@ -24,7 +24,7 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['users'] = User.objects.filter(is_superuser=False)
+        context['users'] = User.objects.all()
         return context
 
 
@@ -34,7 +34,7 @@ class CreateUserView(LoginRequiredMixin, CreateView):
     '''
     model = User
     template_name = 'user/create.html'
-    fields = ['first_name', 'last_name', 'email', 'iban']
+    fields = ['first_name', 'last_name', 'iban']
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
@@ -50,7 +50,7 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
     '''
     model = User
     template_name = 'user/update.html'
-    fields = ['first_name', 'last_name', 'email', 'iban']
+    fields = ['first_name', 'last_name', 'iban']
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
