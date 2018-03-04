@@ -28,6 +28,7 @@ class User(AbstractUser):
         '''
         if not self.creator:
             self.is_superuser = True
+            self.is_staff = True
             self.username = self.email
         else:
             self.is_superuser = False
