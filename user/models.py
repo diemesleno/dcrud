@@ -28,11 +28,14 @@ class User(AbstractUser):
         If the user is a superuser, the username will be the email. it not,
         we don't need the username, so I put a hash on it.
         '''
+        print("Im here too")
+        print("Password: {0}".format(self.password))
         if not self.creator:
             self.is_superuser = True
             self.is_staff = True
             self.username = self.email
             self.iban = str(uuid.uuid4())
+            self.set_password(self.email)
         else:
             self.is_superuser = False
             self.username = str(uuid.uuid4())
