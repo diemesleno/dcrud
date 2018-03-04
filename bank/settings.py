@@ -131,6 +131,8 @@ AUTHENTICATION_BACKENDS = (
  'social_core.backends.open_id.OpenIdAuth', # Google
  'social_core.backends.google.GoogleOpenId', # Google
  'social_core.backends.google.GoogleOAuth2', # Google
+ #'django.contrib.auth.backends.ModelBackend', # Django Auth
+ 'user.backends.ModelBackend',
 )
 
 LOGIN_URL = 'login'
@@ -139,6 +141,18 @@ LOGOUT_REDIRECT_URL = 'login'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '707500519844-oqu428ltfchk5jjv6c0epi4r1ok9vc2l.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '20sAh5YZhf7lIbWNAa1Wvdjd'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+)
 
 # Sentry configuration
 RAVEN_CONFIG = {
