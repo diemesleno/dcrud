@@ -75,17 +75,16 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
 
 
 
-def error404(request):
+
+class Template404View(TemplateView):
     '''
-    404 handler
+    Used to handle Page not Found error
     '''
-    template = loader.get_template('404.html')
-    return HttpResponse(content=template.render(), content_type='text/html; charset=utf8', status=404)
+    template_name = '404.html'
 
 
-def error500(request):
+class Template500View(TemplateView):
     '''
-    500 handler
+    Used to handle Server Error Page
     '''
-    template = loader.get_template('500.html')
-    return HttpResponse(content=template.render(), content_type='text/html; charset=utf8', status=500)
+    template_name = '500.html'
