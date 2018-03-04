@@ -19,7 +19,15 @@
                         <tr>
                           <td>{{ u.first_name }}</td>
                           <td>{{ u.last_name }}</td>
+                          {% if u.is_superuser %}
+                            {% if u == user %}
+                              <td>Superuser (Yourself) </td>
+                            {% else %}
+                              <td>-- Superuser -- </td>
+                            {% endif %}
+                          {% else %}
                           <td>{{ u.iban }}</td>
+                          {% endif %}
                           {% if u.creator == user %}
                           <td>
                             <a href="{% url 'user_update' u.id %}"><button type="button" class="btn btn-primary">Update</button></a>
@@ -27,8 +35,12 @@
                           </td>
                           {% else %}
                             <td>
-                                <a href="#" title="You have no permission to update this user"><button type="button" class="btn btn-primary disabled">Update</button></a>
-                                <a href="#" title="You have no permission to delete this user"><button type="button" class="btn btn-danger disabled">Delete</button></a>
+                                <a href="#" title="You have no permission to update this user">
+                                  <button type="button" class="btn btn-primary disabled">Update</button>
+                                </a>
+                                <a href="#" title="You have no permission to delete this user">
+                                  <button type="button" class="btn btn-danger disabled">Delete</button>
+                                </a>
                             </td>
                           {% endif %}
                         </tr>
