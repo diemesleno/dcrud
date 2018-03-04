@@ -6,7 +6,7 @@
 <h1>{{ request.user.first_name }}, are you sure about deleting {{ user.first_name }}?</h1>
 <form method="POST">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Yes, delete!</button>
+    <button type="submit" class="btn btn-danger">Yes, do it!</button>
 </form>
 {% else %}
  <h1>You can't delete a user that you are not the creator!</h1>
