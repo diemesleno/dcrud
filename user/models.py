@@ -13,11 +13,12 @@ class User(AbstractUser):
     
     def save(self, *args, **kwargs):
         '''
-        If the user create account using Google Authentication he will
-        no have creator but in this case will be superuser. If the user
-        was created by a superuser, so will be a normal user.
+        If the user create the account using Google Authentication he will
+        no have a creator but in this case will be superuser. If the user
+        was created by a superuser, so he will be a normal user.
 
-        As we don't need username here, I put the email hash as username.
+        If the user is a superuser, the username will be the email. it not,
+        we don't need the username.
         '''
         if not self.creator:
             self.is_superuser = True
