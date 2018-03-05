@@ -139,8 +139,8 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'login'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '707500519844-oqu428ltfchk5jjv6c0epi4r1ok9vc2l.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '20sAh5YZhf7lIbWNAa1Wvdjd'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '<Put here your Google Auth Key>'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '<Put here your Google Auth Secret>'
 
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
