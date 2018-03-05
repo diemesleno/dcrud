@@ -47,6 +47,9 @@ git clone https://github.com/diemeslen0/dcrud
 
 cd dcrud
 
+Edit the settings.py file and add the Google Auth Key and Secret
+on lines 142 and 143.
+
 docker-compose build
 
 docker-compose up -d
