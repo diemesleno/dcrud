@@ -43,20 +43,57 @@ Any Operating System with docker/docker-compose installed:
 
 ```sh
 
+Google Auth: 
+
+a) Access https://console.developers.google.com/apis/credentials/oauthclient/
+
+b) Generate a credential
+
+c) Configure as origin: 
+
+http://localhost:8000 
+
+and 
+
+http://127.0.0.1:8000
+
+d) Configure as authorized redirections:  
+
+http://localhost:8000/auth/complete/google-oauth2/
+
+and
+
+http://127.0.0.1:8000/auth/complete/google-oauth2/
+
+
+e) Save and copy the Cliend ID and Secret key
+
+f) Clone the project:
+
 git clone https://github.com/diemeslen0/dcrud
+
+g) Enter in the project directory:
 
 cd dcrud
 
-Edit the settings.py file and add the Google Auth Key and Secret
+h) Edit the settings.py file and add the Google Auth Key (Client ID) and Secret
 on lines 142 and 143.
+
+i) Build the image with docker-compose:
 
 docker-compose build
 
+j) Run the container:
+
 docker-compose up -d
+
+k) Exscute the migrate:
 
 docker-compose run web python manage.py migrate
 
-access http://127.0.0.1:8000
+l) Open a browser and try it:
+
+http://127.0.0.1:8000
 
 Authentication with Google Account will create a user with superuser power (administrator). 
 With this power you can create new users without giving them admin permissions. 
