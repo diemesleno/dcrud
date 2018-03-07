@@ -6,6 +6,8 @@ services:
     restart: always
     ports: 
       - "5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     networks: 
       - production
 
@@ -15,9 +17,7 @@ services:
       context: .
     image: diemesleno/python
     container_name: python
-    command: python manage.py runserver 0.0.0.0:8000       
-    volumes:
-      - .:/var/www
+    command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
     networks: 
@@ -25,6 +25,8 @@ services:
     depends_on:
       - "db"
 
+volumes:
+   pgdata:
 networks:
    production:
       driver: bridge
