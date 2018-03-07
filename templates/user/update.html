@@ -17,7 +17,6 @@
         <h4 class="form-signin-heading">{{ request.user.first_name}}, to update the user, please change what you need in the form bellow.</h4>
         <fieldset>
                 {% for field in form.visible_fields %}
-                {% if field.name != 'password1' and field.name != 'password2' and field.name != 'email' %}
                 <div class="form-group">
                   <label for="{{ field.auto_id }}" class="col-md-3 control-label">{{ field.label }}</label>
                   {% render_field field class='form-control' required="required" autofocus="autofocus" %}
@@ -25,7 +24,6 @@
                     <span class="help-block">{{ error }}</span>
                   {% endfor %}
                 </div>
-                {% endif %}
               {% endfor %}
         <button class="btn btn-large btn-primary" type="submit">Save</button>
         </fieldset>
