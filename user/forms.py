@@ -29,8 +29,7 @@ class UserAdminCreationForm(UserCreationForm):
 class UserAdminForm(forms.ModelForm):
     '''
     The admin form will follow the same rule, plus the 2 fields that allow
-    enter in the admin area. Not necessary because I remove the option to access
-    the admin area.
+    enter in the admin area.
     '''
     class Meta:
         model = User
