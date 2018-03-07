@@ -53,6 +53,9 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
     fields = ['first_name', 'last_name', 'iban']
     success_url = reverse_lazy('index')
 
+    def get_queryset(self):
+        return User.objects.filter(creator=self.request.user)
+
     def get_context_data(self, **kwargs):
         context = super(UpdateUserView, self).get_context_data(**kwargs)
         context['owner'] = User.objects.filter(pk=self.kwargs['pk'], creator=self.request.user)
@@ -67,7 +70,10 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
     model = User
     template_name = 'user/delete.html'
     success_url = reverse_lazy('index')
-
+    
+    def get_queryset(self):
+        return User.objects.filter(creator=self.request.user)
+    
     def get_context_data(self, **kwargs):
         context = super(DeleteView, self).get_context_data(**kwargs)
         context['owner'] = User.objects.filter(pk=self.kwargs['pk'], creator=self.request.user)
