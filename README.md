@@ -79,19 +79,25 @@ cd dcrud
 h) Edit the settings.py file and add the Google Auth Key (Client ID) and Secret
 on lines 142 and 143.
 
-i) Build the image with docker-compose:
+i) Optional - Enabling Sentry:
+
+- Uncomment line 50 (raven)
+
+- On line 159, add yout Sentry Key
+
+j) Build the image with docker-compose:
 
 docker-compose build
 
-j) Run the container:
+k) Run the container:
 
 docker-compose up -d
 
-k) Exscute the migrate:
+l) Exscute the migrate:
 
 docker-compose run web python manage.py migrate
 
-l) Open a browser and try it:
+m) Open a browser and try it:
 
 http://127.0.0.1:8000
 
