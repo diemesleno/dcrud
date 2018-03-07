@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'localflavor',
     'social_django',
     'widget_tweaks',
-    'raven.contrib.django.raven_compat',
+    #'raven.contrib.django.raven_compat', # Uncoment to enable Sentry
 
 ]
 
@@ -139,8 +139,8 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'login'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '<Put your Google Auth Key here>'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '<Put your Google Auth Secret here>'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '<Put here your Google Auth Key>'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '<Put here your Google Auth Secret>'
 
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
@@ -156,7 +156,7 @@ SOCIAL_AUTH_PIPELINE = (
 
 # Sentry configuration
 RAVEN_CONFIG = {
-    'dsn': '<Put your raven client key here>',
+    'dsn': '<Put here your Sentry key>',
     # If you are using git, you can also automatically configure the
     # release based on the git info.
     #'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
