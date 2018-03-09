@@ -38,10 +38,8 @@ class CreateUserView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.creator = self.request.user
-        self.object.save()
-        return redirect('index')
+        form.instance.creator = self.request.user
+        return super(CreateUserView, self).form_valid(form)
 
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
@@ -53,8 +51,8 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
     fields = ['first_name', 'last_name', 'iban']
     success_url = reverse_lazy('index')
 
-    def get_queryset(self):
-        return User.objects.filter(creator=self.request.user)
+    def get_queryset(self, *args, **kwargs):
+        return super(UpdateUserView, self).get_queryset(*args, **kwargs).filter(creator=self.request.user)
 
     def get_context_data(self, **kwargs):
         context = super(UpdateUserView, self).get_context_data(**kwargs)
@@ -71,9 +69,9 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
     template_name = 'user/delete.html'
     success_url = reverse_lazy('index')
     
-    def get_queryset(self):
-        return User.objects.filter(creator=self.request.user)
-    
+    def get_queryset(self, *args, **kwargs):
+        return super(DeleteUserView, self).get_queryset(*args, **kwargs).filter(creator=self.request.user)
+        
     def get_context_data(self, **kwargs):
         context = super(DeleteView, self).get_context_data(**kwargs)
         context['owner'] = User.objects.filter(pk=self.kwargs['pk'], creator=self.request.user)
