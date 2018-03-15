@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
 from localflavor.generic.models import IBANField
 from django.conf import settings
+from django.db.models.signals import pre_save
 
 import uuid
 
@@ -18,33 +19,26 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    
-    def save(self, *args, **kwargs):
-        '''
-        If the user create the account using Google Authentication he will
-        no have a creator but in this case will be superuser. If the user
-        was created by a superuser, so he will be a normal user.
-
-        If the user is a superuser, the username will be the email. it not,
-        we don't need the username, so I put a hash on it.
-        '''
-        print("Im here too")
-        print("Password: {0}".format(self.password))
-        if not self.creator:
-            self.is_superuser = True
-            self.is_staff = True
-            self.username = self.email
-            self.iban = str(uuid.uuid4())
-            self.set_password(self.email)
-        else:
-            self.is_superuser = False
-            self.username = str(uuid.uuid4())
-            self.email = str(uuid.uuid4())
-        super().save(*args, **kwargs)
-
     def __str__(self):
         '''
         Just to not return a object without information
         '''
         return self.first_name
 
+
+'''
+Using signal against override save method
+'''
+def user_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.creator:
+        instance.is_superuser = True
+        instance.is_staff = True
+        instance.username = instance.email
+        instance.iban = str(uuid.uuid4())
+        instance.set_password(instance.email)
+    else:
+        instance.is_superuser = False
+        instance.username = str(uuid.uuid4())
+        instance.email = str(uuid.uuid4())
+
+pre_save.connect(user_pre_save_receiver, sender=User)
