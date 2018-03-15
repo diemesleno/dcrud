@@ -139,8 +139,8 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'login'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '<Put here your Google Auth Key>'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '<Put here your Google Auth Secret>'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '<Put your Google Oauth2 Key here>'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '<Put your Google Oauth2 Secrete here>'
 
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
@@ -162,4 +162,24 @@ RAVEN_CONFIG = {
     #'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
     #'release': raven.fetch_git_sha(os.path.dirname(__file__)),
     'release': raven.fetch_git_sha(os.path.abspath(BASE_DIR)),
+}
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'default': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['default'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+        },
+    },
 }
