@@ -52,7 +52,8 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('index')
 
     def get_queryset(self, *args, **kwargs):
-        return super(UpdateUserView, self).get_queryset(*args, **kwargs).filter(creator=self.request.user)
+        qs =  super(UpdateUserView, self).get_queryset(*args, **kwargs).filter(creator=self.request.user)
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super(UpdateUserView, self).get_context_data(**kwargs)
